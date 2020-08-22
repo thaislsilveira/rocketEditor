@@ -1,0 +1,16 @@
+{
+  "name": "rocketeditorvite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-rc.1"
+  },
+  "devDependencies": {
+    "vite": "^1.0.0-rc.1",
+    "tailwindcss": "^1.7.3",
+    "@vue/compiler-sfc": "^3.0.0-rc.1"
+  }
+}
