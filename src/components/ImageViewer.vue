@@ -9,7 +9,7 @@
       </span>
     </label>
     <div v-else class="flex items-center justify-center w-full h-full p-8">
-      <img  class="w-full" :src="state.image" :style="{
+      <img  class="w-full" ref="refImage" :src="state.image" :style="{
         filter: state.fx
       }" alt="">
     </div>
@@ -17,12 +17,15 @@
 </template>
 
 <script>
-import { reactive, computed } from 'vue';
-import { useStore } from '../store';
+import { reactive, computed, ref } from 'vue';
+import { useStore, setRefImage } from '../store';
 
 export default {
   setup() {
     const store = useStore();
+    const refImage = ref(null);
+
+    setRefImage(refImage);
 
     const state = reactive({
       image: null,
@@ -42,7 +45,7 @@ export default {
       reader.readAsDataURL(file);
     }
 
-    return { state, handleUpload };
+    return { state, handleUpload, refImage };
   }
 }
 </script>

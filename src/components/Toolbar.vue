@@ -36,7 +36,7 @@
       <custom-range  :value="state.fx.contrast" @update="setContrast" class="mt-4"  />
     </div>
     <div class="p-5">
-      <button class="w-full py-4 text-2xl font-medium text-white uppercase rounded-sm bg-brand-main">
+      <button @click="download" class="w-full py-4 text-2xl font-medium text-white uppercase rounded-sm bg-brand-main">
         baixar imagem
       </button>
     </div>
@@ -53,12 +53,25 @@ import {
   setSaturate, 
   useStore
 } from '../store';
+
+import domToImage from 'dom-to-image';
+
 export default {
   components: {
     CustomRange,
   },
   setup() {
+   
     const state = useStore();
+
+    const download = async () => {
+      const dataUrl = await domToImage.toPng(state.refImage);
+
+      const link = document.createElement('a')
+      link.download = 'my-image.png'
+      link.href = dataUrl
+      link.click()
+    };
 
     return {
       state,
