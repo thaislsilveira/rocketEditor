@@ -13,6 +13,16 @@
 
 <script>
 export default {
+  props: {
+    value: {type: Number, default: 0 }
+  },
+
+  setup(_, { emit }){
+   const handleRangeChange = (event) => {
+     emit('update', event.target.value)
+   };
+  return { handleRangeChange };
+  }
  
 }
 </script>

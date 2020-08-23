@@ -9,19 +9,25 @@
       </span>
     </label>
     <div v-else class="flex items-center justify-center w-full h-full p-8">
-      <img  class="w-full" :src="state.image" alt="">
+      <img  class="w-full" :src="state.image" :style="{
+        filter: state.fx
+      }" alt="">
     </div>
   </div>
 </template>
 
 <script>
 import { reactive, computed } from 'vue';
+import { useStore } from '../store';
 
 export default {
   setup() {
+    const store = useStore();
+
     const state = reactive({
       image: null,
       hasImage: computed(() => !!state.image),
+      fx: computed(() => `grayscale(${store.fx.grayscale}) blur(${store.fx.blur}px) brightness(${store.fx.brightness}%) contrast(${store.fx.contrast}%) saturate(${store.fx.saturate}%)`)
     })
 
 

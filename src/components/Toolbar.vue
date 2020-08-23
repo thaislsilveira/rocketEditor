@@ -5,35 +5,35 @@
         Saturação
       </h4>
       <p class="-mt-1 text-sm text-white">O quão viva a imagem será</p>
-      <custom-range class="mt-4" />
+      <custom-range :value="state.fx.saturate" @update="setSaturate" class="mt-4" />
     </div>
     <div class="p-5">
        <h4 class="text-xl font-bold text-white">
         Desfoque
       </h4>
       <p class="-mt-1 text-sm text-white">O quão nítida a imagem será</p>
-      <custom-range class="mt-4"  />
+      <custom-range :value="state.fx.blur" @update="setBlur" class="mt-4"  />
     </div>
     <div class="p-5">
        <h4 class="text-xl font-bold text-white">
         Brilho
       </h4>
       <p class="-mt-1 text-sm text-white">O quão clara a imagem será</p>
-      <custom-range class="mt-4"  />
+      <custom-range :value="state.fx.brightness" @update="setBrightness" class="mt-4"  />
     </div>
     <div class="p-5">
        <h4 class="text-xl font-bold text-white">
         P&B
       </h4>
       <p class="-mt-1 text-sm text-white">O quão preto/branco a imagem será</p>
-      <custom-range class="mt-4"  />
+      <custom-range :value="state.fx.grayscale" @update="setGrayscale" class="mt-4"  />
     </div>
     <div class="p-5">
        <h4 class="text-xl font-bold text-white">
         Contraste
       </h4>
       <p class="-mt-1 text-sm text-white">O quão definido das cores da imagem será</p>
-      <custom-range class="mt-4"  />
+      <custom-range  :value="state.fx.contrast" @update="setContrast" class="mt-4"  />
     </div>
     <div class="p-5">
       <button class="w-full py-4 text-2xl font-medium text-white uppercase rounded-sm bg-brand-main">
@@ -45,9 +45,29 @@
 
 <script>
 import CustomRange from './CustomRange.vue';
+import { 
+  setGrayscale, 
+  setBlur, 
+  setBrightness, 
+  setContrast, 
+  setSaturate, 
+  useStore
+} from '../store';
 export default {
   components: {
     CustomRange,
+  },
+  setup() {
+    const state = useStore();
+
+    return {
+      state,
+      setGrayscale, 
+      setBlur, 
+      setBrightness, 
+      setContrast, 
+      setSaturate, 
+    }
   }
 }
 </script>
